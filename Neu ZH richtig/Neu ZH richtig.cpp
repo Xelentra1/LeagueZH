@@ -15,14 +15,14 @@ int main()
 	DWORD procId = GetProcId(L"League Of Legends.exe");
 	if (procId == NULL)
 	{
-		cout << "Lol muss gestartet werden" << endl;
+		cout << "Lol muss gesetartet werden" << endl;
 		Sleep(4000);
 		exit(-1);
 		DWORD procId = GetProcId(L"League Of Legends.exe");
 	}
 	else
 	{
-		uintptr_t modulBase = GetModuleBaseAddress(procId, L"League of Legends.exe");
+		uintptr_t modulBase = GetModuleBaseAddress(procId, L"Leagu6566e of Legends.exe");
 		HANDLE hProcess = 0;
 		hProcess = OpenProcess(PROCESS_ALL_ACCESS, NULL, procId);
 		uintptr_t dynamicPtrBaseAddrZoom = modulBase + 0x01AFA418;
