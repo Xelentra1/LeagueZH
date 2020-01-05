@@ -14,7 +14,7 @@ int main()
 	//These are the standart values for FOV and Zoom
 	float neuZoomValue{ 2250 };
 	float neuFovValue{ 40 };
-	DWORD procId = GetProcId(L"League Of Legends.exe");
+	DWORD procId{GetProcId(L"League Of Legends.exe")};
 	if (procId == NULL)
 	{
 		cout << "League need to be started" << '\n';
@@ -23,7 +23,7 @@ int main()
 	}
 	else
 	{
-		uintptr_t modulBase = GetModuleBaseAddress(procId, L"League of Legends.exe");
+		uintptr_t modulBase{GetModuleBaseAddress(procId, L"League of Legends.exe")};
 		HANDLE hProcess{};
 		hProcess = OpenProcess(PROCESS_ALL_ACCESS, NULL, procId);
 		uintptr_t dynamicPtrBaseAddrZoom = modulBase + 0x01AFA418;
