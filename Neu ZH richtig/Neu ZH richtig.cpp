@@ -9,21 +9,21 @@ using namespace std;
 
 int main()
 {
-	//zahlen in den variablen sind standarts
+	//These are the standart values for FOV and Zoom
 	float neuZoomValue{ 2250 };
 	float neuFovValue{ 40 };
 	DWORD procId = GetProcId(L"League Of Legends.exe");
 	if (procId == NULL)
 	{
-		cout << "Lol muss gesetartet werden" << endl;
+		cout << "League need to be started" << '\n';
 		Sleep(4000);
 		exit(-1);
 		DWORD procId = GetProcId(L"League Of Legends.exe");
 	}
 	else
 	{
-		uintptr_t modulBase = GetModuleBaseAddress(procId, L"Leagu6566e of Legends.exe");
-		HANDLE hProcess = 0;
+		uintptr_t modulBase = GetModuleBaseAddress(procId, L"League of Legends.exe");
+		HANDLE hProcess{0};
 		hProcess = OpenProcess(PROCESS_ALL_ACCESS, NULL, procId);
 		uintptr_t dynamicPtrBaseAddrZoom = modulBase + 0x01AFA418;
 		uintptr_t dynamicPtrBaseAddrZoom2 = modulBase + 0x0339496C;
@@ -35,7 +35,7 @@ int main()
 		uintptr_t ZoomAddr2 = FindDMAAddy(hProcess, dynamicPtrBaseAddrZoom2, ZoomOffsets2);
 		if (procId == NULL)
 		{
-			cout << "Fehler konnte ProcID nicht finden" << endl;
+			cout << "Fehler konnte ProcID nicht finden" << '\n';
 			Sleep(4000);
 			exit(-1);
 		}
