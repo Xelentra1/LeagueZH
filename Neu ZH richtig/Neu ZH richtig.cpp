@@ -26,14 +26,14 @@ int main()
 		uintptr_t modulBase{GetModuleBaseAddress(procId, L"League of Legends.exe")};
 		HANDLE hProcess{};
 		hProcess = OpenProcess(PROCESS_ALL_ACCESS, NULL, procId);
-		uintptr_t dynamicPtrBaseAddrZoom = modulBase + 0x01AFA418;
-		uintptr_t dynamicPtrBaseAddrZoom2 = modulBase + 0x0339496C;
+		uintptr_t dynamicPtrBaseAddrZoom{ modulBase + 0x01AFA418};
+		uintptr_t dynamicPtrBaseAddrZoom2{ modulBase + 0x0339496C};
 		//vector<unsigned int> ZoomOffsets = { 12 , 608 }; //not needen anymore was bugged and did zoom out without controlling it ingame
-		vector<unsigned int> ZoomOffsets2 = { 40 };
-		vector<unsigned int> FovOffsets = { 12 , 376 };
-		uintptr_t FovAddr = FindDMAAddy(hProcess, dynamicPtrBaseAddrZoom, FovOffsets);
+		vector<unsigned int> ZoomOffsets2{ 40 };
+		vector<unsigned int> FovOffsets{ 12 , 376 };
+		uintptr_t FovAddr{ FindDMAAddy(hProcess, dynamicPtrBaseAddrZoom, FovOffsets)};
 		//uintptr_t ZoomAddr = FindDMAAddy(hProcess, dynamicPtrBaseAddrZoom, ZoomOffsets); //outdated method
-		uintptr_t ZoomAddr2 = FindDMAAddy(hProcess, dynamicPtrBaseAddrZoom2, ZoomOffsets2);
+		uintptr_t ZoomAddr2{ FindDMAAddy(hProcess, dynamicPtrBaseAddrZoom2, ZoomOffsets2)};
 		if (procId == NULL)
 		{
 			cout << "seems like something went wrong" << '\n';
