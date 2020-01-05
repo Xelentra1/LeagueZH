@@ -7,6 +7,8 @@
 
 using namespace std;
 
+
+
 int main()
 {
 	//These are the standart values for FOV and Zoom
@@ -18,12 +20,11 @@ int main()
 		cout << "League need to be started" << '\n';
 		Sleep(4000);
 		exit(-1);
-		DWORD procId = GetProcId(L"League Of Legends.exe");
 	}
 	else
 	{
 		uintptr_t modulBase = GetModuleBaseAddress(procId, L"League of Legends.exe");
-		HANDLE hProcess{ 0 };
+		HANDLE hProcess{};
 		hProcess = OpenProcess(PROCESS_ALL_ACCESS, NULL, procId);
 		uintptr_t dynamicPtrBaseAddrZoom = modulBase + 0x01AFA418;
 		uintptr_t dynamicPtrBaseAddrZoom2 = modulBase + 0x0339496C;
@@ -48,26 +49,26 @@ int main()
 					//WriteProcessMemory(hProcess, (LPVOID)ZoomAddr, &neuZoomValue, sizeof(neuZoomValue), 0); //outdated
 					WriteProcessMemory(hProcess, (LPVOID)ZoomAddr2, &neuZoomValue, sizeof(neuZoomValue), 0);
 					neuZoomValue = neuZoomValue + 50;
-					cout << neuZoomValue << endl;
+					cout << neuZoomValue +50 << '\n';
 				}
 				else if (GetAsyncKeyState(VK_SUBTRACT))
 				{
 					//WriteProcessMemory(hProcess, (LPVOID)ZoomAddr, &neuZoomValue, sizeof(neuZoomValue), 0); //outdated
 					WriteProcessMemory(hProcess, (LPVOID)ZoomAddr2, &neuZoomValue, sizeof(neuZoomValue), 0);
 					neuZoomValue = neuZoomValue - 50;
-					cout << neuZoomValue << endl;
+					cout << neuZoomValue - 50 << '\n';
 				}
 				else if (GetAsyncKeyState(VK_UP))
 				{
 					WriteProcessMemory(hProcess, (LPVOID)FovAddr, &neuFovValue, sizeof(neuFovValue), 0);
 					neuFovValue = neuFovValue + 1;
-					cout << neuFovValue << endl;
+					cout << neuFovValue + 1 << '\n';
 				}
 				else if (GetAsyncKeyState(VK_DOWN))
 				{
 					WriteProcessMemory(hProcess, (LPVOID)FovAddr, &neuFovValue, sizeof(neuFovValue), 0);
 					neuFovValue = neuFovValue - 1;
-					cout << neuFovValue << endl;
+					cout << neuFovValue - 1 << '\n';
 				}
 				Sleep(100);
 			}while (true);
